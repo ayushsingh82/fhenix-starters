@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -7,18 +9,21 @@ const page = () => {
   const projects = [
     {
       id: 1,
+      name: 'Project  1',
       image: 'https://cdn.prod.website-files.com/6889e4acaa36a330a3b124f2/68aca7d70e920af4be0d4a0d_Untitled-22.webp',
       githubUrl: 'https://github.com',
       websiteUrl: 'https://example.com',
     },
     {
       id: 2,
+      name: 'Project  2',
       image: 'https://www.nftgators.com/wp-content/uploads/2024/06/Fhenix.jpg',
       githubUrl: 'https://github.com',
       websiteUrl: 'https://example.com',
     },
     {
       id: 3,
+      name: 'Project  3',
       image: 'https://cdn.prod.website-files.com/6889e4acaa36a330a3b124f2/6914c5793d1c014c69016d8a_Twitter%20post%20-%20404%20(1).png',
       githubUrl: 'https://github.com',
       websiteUrl: 'https://example.com',
@@ -27,43 +32,43 @@ const page = () => {
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white py-16 px-8 relative overflow-hidden">
-      {/* LetterGlitch on left side */}
-      <div className="absolute left-0 top-0 w-96 h-full z-0">
-        <LetterGlitch
-          glitchColors={['#ffffff', '#f4f4f5', '#e4e4e7', '#d4d4d8', '#a1a1aa', '#71717a', '#CC4420']}
-          glitchSpeed={50}
-          centerVignette={false}
-          outerVignette={false}
-          smooth={true}
-        />
-      </div>
-      {/* LetterGlitch on right side */}
-      <div className="absolute right-0 top-0 w-96 h-full z-0">
-        <LetterGlitch
-          glitchColors={['#ffffff', '#f4f4f5', '#e4e4e7', '#d4d4d8', '#a1a1aa', '#71717a', '#CC4420']}
-          glitchSpeed={50}
-          centerVignette={false}
-          outerVignette={false}
-          smooth={true}
-        />
-      </div>
+      {/* Orange gradient on left end - more intense */}
+      <div className="absolute left-0 top-0 w-24 md:w-96 h-full bg-gradient-to-r from-[#CC4420]/50 to-transparent pointer-events-none z-0"></div>
+      {/* Orange gradient on right end - more intense */}
+      <div className="absolute right-0 top-0 w-24 md:w-96 h-full bg-gradient-to-l from-[#CC4420]/50 to-transparent pointer-events-none z-0"></div>
       
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10 px-4 md:px-8">
         {/* First row with 2 boxes */}
-        <div className="flex justify-center gap-8 mb-8">
+        <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-8 mb-4 md:mb-8">
           {projects.slice(0, 2).map((project) => (
             <div
               key={project.id}
-              className="w-[400px] border border-zinc-700 rounded-lg overflow-hidden bg-[#0A0A0A] relative"
+              className="w-full md:w-[500px] border border-zinc-700 rounded-lg overflow-hidden bg-[#0A0A0A] relative"
             >
-              {/* Border decorations */}
-              <div className="absolute top-0 left-0 w-4 h-4 border-l-[3px] border-t-[2px] border-[#CC4420]"></div>
-              <div className="absolute top-0 right-0 w-4 h-4 border-r-[3px] border-t-[2px] border-[#CC4420]"></div>
-              <div className="absolute bottom-0 left-0 w-4 h-4 border-l-[3px] border-b-[2px] border-[#CC4420]"></div>
-              <div className="absolute bottom-0 right-0 w-4 h-4 border-r-[3px] border-b-[2px] border-[#CC4420]"></div>
+              {/* Border decorations - corners */}
+              <div className="absolute top-0 left-0 w-6 h-6 border-l-[3px] border-t-[2px] border-[#CC4420] z-10"></div>
+              <div className="absolute top-0 right-0 w-6 h-6 border-r-[3px] border-t-[2px] border-[#CC4420] z-10"></div>
+              <div className="absolute bottom-0 left-0 w-6 h-6 border-l-[3px] border-b-[2px] border-[#CC4420] z-10"></div>
+              <div className="absolute bottom-0 right-0 w-6 h-6 border-r-[3px] border-b-[2px] border-[#CC4420] z-10"></div>
+              
+              {/* Project name with LetterGlitch */}
+              <div className="relative h-20 border-b border-zinc-700 overflow-hidden group">
+                <div className="absolute inset-0">
+                  <LetterGlitch
+                    glitchColors={['#ffffff', '#f4f4f5', '#e4e4e7', '#d4d4d8', '#a1a1aa', '#71717a', '#CC4420']}
+                    glitchSpeed={50}
+                    centerVignette={false}
+                    outerVignette={false}
+                    smooth={true}
+                  />
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center p-4 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                  <h3 className="text-xl font-semibold text-white">{project.name}</h3>
+                </div>
+              </div>
               
               {/* Image section */}
-              <div className="w-full aspect-square bg-zinc-900 relative overflow-hidden">
+              <div className="w-full aspect-[4/3] bg-zinc-900 relative overflow-hidden">
                 <Image
                   src={project.image}
                   alt="Project"
@@ -126,16 +131,32 @@ const page = () => {
           {projects.slice(2, 3).map((project) => (
             <div
               key={project.id}
-              className="w-[400px] border border-zinc-700 rounded-lg overflow-hidden bg-[#0A0A0A] relative"
+              className="w-full md:w-[500px] border border-zinc-700 rounded-lg overflow-hidden bg-[#0A0A0A] relative"
             >
-              {/* Border decorations */}
-              <div className="absolute top-0 left-0 w-4 h-4 border-l-[3px] border-t-[2px] border-[#CC4420]"></div>
-              <div className="absolute top-0 right-0 w-4 h-4 border-r-[3px] border-t-[2px] border-[#CC4420]"></div>
-              <div className="absolute bottom-0 left-0 w-4 h-4 border-l-[3px] border-b-[2px] border-[#CC4420]"></div>
-              <div className="absolute bottom-0 right-0 w-4 h-4 border-r-[3px] border-b-[2px] border-[#CC4420]"></div>
+              {/* Border decorations - corners */}
+              <div className="absolute top-0 left-0 w-6 h-6 border-l-[3px] border-t-[2px] border-[#CC4420] z-10"></div>
+              <div className="absolute top-0 right-0 w-6 h-6 border-r-[3px] border-t-[2px] border-[#CC4420] z-10"></div>
+              <div className="absolute bottom-0 left-0 w-6 h-6 border-l-[3px] border-b-[2px] border-[#CC4420] z-10"></div>
+              <div className="absolute bottom-0 right-0 w-6 h-6 border-r-[3px] border-b-[2px] border-[#CC4420] z-10"></div>
+              
+              {/* Project name with LetterGlitch */}
+              <div className="relative h-20 border-b border-zinc-700 overflow-hidden group">
+                <div className="absolute inset-0">
+                  <LetterGlitch
+                    glitchColors={['#ffffff', '#f4f4f5', '#e4e4e7', '#d4d4d8', '#a1a1aa', '#71717a', '#CC4420']}
+                    glitchSpeed={50}
+                    centerVignette={false}
+                    outerVignette={false}
+                    smooth={true}
+                  />
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center p-4 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                  <h3 className="text-xl font-semibold text-white">{project.name}</h3>
+                </div>
+              </div>
               
               {/* Image section */}
-              <div className="w-full aspect-square bg-zinc-900 relative overflow-hidden">
+              <div className="w-full aspect-[4/3] bg-zinc-900 relative overflow-hidden">
                 <Image
                   src={project.image}
                   alt="Project"

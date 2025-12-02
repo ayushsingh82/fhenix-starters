@@ -6,26 +6,26 @@ const HeroLanding: React.FC = () => {
     // Background color: #0A0A0A with orange gradient on ends
     <section className="min-h-screen bg-[#0A0A0A] text-gray-100 flex items-center justify-center p-8 relative overflow-hidden">
       {/* Orange gradient on left end - more intense */}
-      <div className="absolute left-0 top-0 w-96 h-full bg-gradient-to-r from-[#CC4420]/50 to-transparent pointer-events-none"></div>
+      <div className="absolute left-0 top-0 w-24 md:w-96 h-full bg-gradient-to-r from-[#CC4420]/50 to-transparent pointer-events-none"></div>
       {/* Orange gradient on right end - more intense */}
-      <div className="absolute right-0 top-0 w-96 h-full bg-gradient-to-l from-[#CC4420]/50 to-transparent pointer-events-none"></div>
+      <div className="absolute right-0 top-0 w-24 md:w-96 h-full bg-gradient-to-l from-[#CC4420]/50 to-transparent pointer-events-none"></div>
       
       <div className="max-w-6xl mx-auto text-center z-10 relative">
         {/* --- Branding & Headline --- */}
-        <div className="inline-block mb-4">
-          <span className="text-sm font-mono tracking-widest text-white border border-[#CC4420] px-4 py-2 rounded">
-            AVALANCHE X402 + ERC8004
+        <div className="inline-block mb-2">
+          <span className="text-xs font-mono tracking-widest text-white border border-[#CC4420] px-3 py-1.5 rounded mb-4">
+            FHENIX LIVE DAPPS
           </span>
         </div>
         
-        <h1 className="text-6xl md:text-8xl font-extrabold mb-6 leading-tight text-white">
-          Autonomous <span className="bg-[#CC4420] px-2">Agents</span>.
+        <h1 className="text-6xl md:text-8xl font-semibold font-serif text-white mb-6 leading-tight">
+          Explore <span className="bg-[#CC4420] px-2">Fhenix*</span>.
           <br /> 
-          Instant <span className="bg-[#CC4420] px-2">Payments</span>.
+          Live <span className="bg-[#CC4420] px-2">Dapps</span>.
         </h1>
         
-        <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto mb-10">
-          The Decentralized Marketplace for AI-Powered Services, secured by Avalanche's speed, X402 Micropayments, and ERC-8004 identity.
+        <p className="text-lg md:text-xl text-zinc-400 max-w-3xl mx-auto mb-10">
+          Discover real-world applications built on Fhenix. Explore live dapps showcasing privacy-preserving computation and encrypted data processing.
         </p>
         
         {/* --- CTAs --- */}
