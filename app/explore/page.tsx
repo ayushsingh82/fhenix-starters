@@ -36,9 +36,9 @@ const page = () => {
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white py-16 px-8 relative overflow-hidden">
       {/* Orange gradient on left end - more intense */}
-      <div className="absolute left-0 top-0 w-24 md:w-96 h-full bg-gradient-to-r from-[#CC4420]/50 to-transparent pointer-events-none z-0"></div>
+      <div className="absolute left-0 top-0 w-[77px] md:w-[307px] h-full bg-gradient-to-r from-[#CC4420]/50 to-transparent pointer-events-none z-0"></div>
       {/* Orange gradient on right end - more intense */}
-      <div className="absolute right-0 top-0 w-24 md:w-96 h-full bg-gradient-to-l from-[#CC4420]/50 to-transparent pointer-events-none z-0"></div>
+      <div className="absolute right-0 top-0 w-[77px] md:w-[307px] h-full bg-gradient-to-l from-[#CC4420]/50 to-transparent pointer-events-none z-0"></div>
       
       <div className="max-w-7xl mx-auto relative z-10 px-4 md:px-8">
         {/* First row with 2 boxes */}
@@ -55,7 +55,7 @@ const page = () => {
               <div className="absolute bottom-0 right-0 w-6 h-6 border-r-[3px] border-b-[2px] border-[#CC4420] z-10"></div>
               
               {/* Project name with LetterGlitch */}
-              <div className="relative h-20 border-b border-zinc-700 overflow-hidden">
+              <div className="relative h-[60px] border-b border-zinc-700 overflow-hidden">
                 <div className="absolute inset-0">
                   <LetterGlitch
                     glitchColors={['#ffffff', '#f4f4f5', '#e4e4e7', '#d4d4d8', '#a1a1aa', '#71717a', '#CC4420']}
@@ -143,7 +143,7 @@ const page = () => {
               <div className="absolute bottom-0 right-0 w-6 h-6 border-r-[3px] border-b-[2px] border-[#CC4420] z-10"></div>
               
               {/* Project name with LetterGlitch */}
-              <div className="relative h-20 border-b border-zinc-700 overflow-hidden">
+              <div className="relative h-[60px] border-b border-zinc-700 overflow-hidden">
                 <div className="absolute inset-0">
                   <LetterGlitch
                     glitchColors={['#ffffff', '#f4f4f5', '#e4e4e7', '#d4d4d8', '#a1a1aa', '#71717a', '#CC4420']}
