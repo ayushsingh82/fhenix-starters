@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "X402 - AI Agent Marketplace",
-  description: "Decentralized Marketplace for AI-Powered Services",
+  title: "(fhenix*)-starters",
+  description: "this website contains fhenix starter repos to help you get started with fhenix",
 };
 
 export default function RootLayout({
@@ -32,11 +32,11 @@ export default function RootLayout({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <Link href="/" className="text-2xl font-bold text-white">
-                x402
+                (fhenix*)-starters
               </Link>
               <div className="flex space-x-4">
-                <Link href="/marketplace" className="text-white hover:text-zinc-400 transition">
-                  Marketplace
+                <Link href="/" className="text-white hover:text-zinc-400 transition">
+                  Explore
                 </Link>
               </div>
             </div>

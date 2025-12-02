@@ -1,10 +1,20 @@
 import React from 'react';
 import Link from 'next/link';
+import LetterGlitch from './LetterGlitch';
 
 const HeroLanding: React.FC = () => {
   return (
     // Background color: #0A0A0A with orange gradient on ends
     <section className="min-h-screen bg-[#0A0A0A] text-gray-100 flex items-center justify-center p-8 relative overflow-hidden">
+      {/* LetterGlitch background effect */}
+      <div className="absolute inset-0 w-full h-full z-0">
+        <LetterGlitch
+          glitchSpeed={50}
+          centerVignette={true}
+          outerVignette={false}
+          smooth={true}
+        />
+      </div>
       {/* Orange gradient on left end - more intense */}
       <div className="absolute left-0 top-0 w-96 h-full bg-gradient-to-r from-[#CC4420]/50 to-transparent pointer-events-none"></div>
       {/* Orange gradient on right end - more intense */}
@@ -30,7 +40,7 @@ const HeroLanding: React.FC = () => {
         
         {/* --- CTAs --- */}
         <div className="flex justify-center space-x-4">
-          <Link href="/marketplace">
+          <Link href="/">
             <button className="px-8 py-3 rounded-lg font-semibold text-lg text-[#CC4420] border border-white bg-white transition duration-300 ease-in-out transform hover:scale-105 hover:bg-[#CC4420] hover:text-white hover:border-transparent">
               Explore Agents
             </button>
