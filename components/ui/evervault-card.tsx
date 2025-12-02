@@ -7,9 +7,15 @@ import { cn } from "@/lib/utils";
 export const EvervaultCard = ({
   text,
   className,
+  backgroundColor = '#000000',
+  textColor = '#ffffff',
+  isLight = false,
 }: {
   text?: string;
   className?: string;
+  backgroundColor?: string;
+  textColor?: string;
+  isLight?: boolean;
 }) => {
   let mouseX = useMotionValue(0);
   let mouseY = useMotionValue(0);
@@ -33,23 +39,26 @@ export const EvervaultCard = ({
   return (
     <div
       className={cn(
-        "p-0.5  bg-black aspect-square  flex items-center justify-center w-full h-full relative",
+        "p-0.5 aspect-square flex items-center justify-center w-full h-full relative",
         className
       )}
+      style={{ backgroundColor }}
     >
       <div
         onMouseMove={onMouseMove}
-        className="group/card rounded-3xl w-full relative overflow-hidden bg-black flex items-center justify-center h-full"
+        className="group/card rounded-3xl w-full relative overflow-hidden flex items-center justify-center h-full"
+        style={{ backgroundColor }}
       >
         <CardPattern
           mouseX={mouseX}
           mouseY={mouseY}
           randomString={randomString}
+          isLight={isLight}
         />
         <div className="relative z-10 flex items-center justify-center">
-          <div className="relative h-44 w-44  rounded-full flex items-center justify-center text-white font-bold text-4xl">
-            <div className="absolute w-full h-full bg-black blur-sm rounded-full" />
-            <span className="text-white z-20">{text}</span>
+          <div className="relative h-44 w-44 rounded-full flex items-center justify-center font-bold text-4xl">
+            <div className="absolute w-full h-full blur-sm rounded-full" style={{ backgroundColor }} />
+            <span className="z-20" style={{ color: textColor }}>{text}</span>
           </div>
         </div>
       </div>
@@ -57,15 +66,25 @@ export const EvervaultCard = ({
   );
 };
 
-export function CardPattern({ mouseX, mouseY, randomString }: any) {
+export function CardPattern({ mouseX, mouseY, randomString, isLight = false }: any) {
   let maskImage = useMotionTemplate`radial-gradient(250px at ${mouseX}px ${mouseY}px, white, transparent)`;
-  let style = { maskImage, WebkitMaskImage: maskImage };
+  let style = { 
+    maskImage, 
+    WebkitMaskImage: maskImage,
+    ...(isLight && {
+      background: 'linear-gradient(to right, #059669, #10b981, #14b8a6, #06b6d4, #0ea5e9, #3b82f6, #2563eb)'
+    })
+  };
 
   return (
     <div className="pointer-events-none">
       <div className="absolute inset-0 rounded-2xl  [mask-image:linear-gradient(white,transparent)] group-hover/card:opacity-50"></div>
       <motion.div
-        className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-500 to-blue-500 opacity-0  group-hover/card:opacity-100 backdrop-blur-xl transition duration-500"
+        className={`absolute inset-0 rounded-2xl opacity-0 group-hover/card:opacity-100 backdrop-blur-xl transition duration-500 ${
+          isLight 
+            ? '' 
+            : 'bg-gradient-to-r from-green-500 to-blue-500'
+        }`}
         style={style}
       />
       <motion.div

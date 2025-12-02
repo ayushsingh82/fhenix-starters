@@ -8,7 +8,8 @@ const LetterGlitch = ({
   centerVignette = false,
   outerVignette = true,
   smooth = true,
-  characters = '(FHENIX*)(FHENIX*)-STARTERS!@#$&*()-_+FHENIX*;:<>.,FHENIX*'
+  characters = '(FHENIX*)(FHENIX*)-STARTERS!@#$&*()-_+FHENIX*;:<>.,FHENIX*',
+  backgroundColor = '#000000'
 }: {
   glitchColors?: string[];
   glitchSpeed?: number;
@@ -16,6 +17,7 @@ const LetterGlitch = ({
   outerVignette?: boolean;
   smooth?: boolean;
   characters?: string;
+  backgroundColor?: string;
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animationRef = useRef<number | null>(null);
@@ -218,7 +220,7 @@ const LetterGlitch = ({
   }, [glitchSpeed, smooth]);
 
   return (
-    <div className="relative w-full h-full bg-black overflow-hidden">
+    <div className="relative w-full h-full overflow-hidden" style={{ backgroundColor }}>
       <canvas ref={canvasRef} className="block w-full h-full" />
       {outerVignette && (
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none bg-[radial-gradient(circle,_rgba(0,0,0,0)_60%,_rgba(0,0,0,1)_100%)]"></div>

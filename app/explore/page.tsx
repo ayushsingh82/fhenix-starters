@@ -6,6 +6,32 @@ import LetterGlitch from '@/app/components/LetterGlitch';
 import { EvervaultCard, Icon } from '@/components/ui/evervault-card';
 import { useTheme } from '../contexts/ThemeContext';
 
+// Glitch color arrays for themes
+const DARK_THEME_GLITCH_COLORS = [
+  '#ffffff',      // white
+  '#f4f4f5',      // zinc-100
+  '#e4e4e7',      // zinc-200
+  '#d4d4d8',      // zinc-300
+  '#a1a1aa',      // zinc-400
+  '#71717a',      // zinc-500
+  '#CC4420',      // orange
+  '#FF6B4A',      // lighter orange
+  '#E63900',      // darker orange
+];
+
+const LIGHT_THEME_GLITCH_COLORS = [
+  '#ffffff',      // white
+  '#f4f4f5',      // zinc-100
+  '#e4e4e7',      // zinc-200
+  '#d4d4d8',      // zinc-300
+  '#a1a1aa',      // zinc-400
+  '#71717a',      // zinc-500
+  '#03D9DC',      // blue
+  '#04B8BB',      // blue variant
+  '#05979A',      // blue variant
+  '#067679',      // blue variant
+];
+
 const page = () => {
   const { theme } = useTheme();
   const isLight = theme === 'light';
@@ -81,7 +107,8 @@ const page = () => {
               }`}>
                 <div className="absolute inset-0">
                   <LetterGlitch
-                    glitchColors={['#ffffff', '#f4f4f5', '#e4e4e7', '#d4d4d8', '#a1a1aa', '#71717a', '#CC4420']}
+                    glitchColors={isLight ? LIGHT_THEME_GLITCH_COLORS : DARK_THEME_GLITCH_COLORS}
+                    backgroundColor={isLight ? '#FAFAFA' : '#000000'}
                     glitchSpeed={50}
                     centerVignette={false}
                     outerVignette={false}
@@ -91,16 +118,38 @@ const page = () => {
               </div>
               
               {/* EvervaultCard section */}
-              <div className="w-full aspect-[4/3] bg-black relative overflow-hidden border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-center justify-center p-4">
-                <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-white z-20" />
-                <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-white z-20" />
-                <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-white z-20" />
-                <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-white z-20" />
-                <EvervaultCard text={project.name} className="w-full h-full" />
+              <div className={`w-full aspect-[4/3] relative overflow-hidden border flex flex-col items-center justify-center p-4 ${
+                isLight 
+                  ? 'bg-white border-zinc-300' 
+                  : 'bg-black border-black/[0.2]'
+              }`}>
+                <Icon className={`absolute h-6 w-6 -top-3 -left-3 z-20 ${
+                  isLight ? 'text-[#011623]' : 'text-white'
+                }`} />
+                <Icon className={`absolute h-6 w-6 -bottom-3 -left-3 z-20 ${
+                  isLight ? 'text-[#011623]' : 'text-white'
+                }`} />
+                <Icon className={`absolute h-6 w-6 -top-3 -right-3 z-20 ${
+                  isLight ? 'text-[#011623]' : 'text-white'
+                }`} />
+                <Icon className={`absolute h-6 w-6 -bottom-3 -right-3 z-20 ${
+                  isLight ? 'text-[#011623]' : 'text-white'
+                }`} />
+                <EvervaultCard 
+                  text={project.name} 
+                  className="w-full h-full"
+                  backgroundColor={isLight ? '#ffffff' : '#000000'}
+                  textColor={isLight ? '#000000' : '#ffffff'}
+                  isLight={isLight}
+                />
               </div>
               
               {/* Description section */}
-              <div className="p-4 border-t border-zinc-700 bg-black">
+              <div className={`p-4 border-t ${
+                isLight 
+                  ? 'bg-white border-zinc-300' 
+                  : 'bg-black border-zinc-700'
+              }`}>
                 <p className="text-sm text-zinc-400 font-light">{project.description}</p>
               </div>
               
@@ -191,7 +240,8 @@ const page = () => {
               }`}>
                 <div className="absolute inset-0">
                   <LetterGlitch
-                    glitchColors={['#ffffff', '#f4f4f5', '#e4e4e7', '#d4d4d8', '#a1a1aa', '#71717a', '#CC4420']}
+                    glitchColors={isLight ? LIGHT_THEME_GLITCH_COLORS : DARK_THEME_GLITCH_COLORS}
+                    backgroundColor={isLight ? '#FAFAFA' : '#000000'}
                     glitchSpeed={50}
                     centerVignette={false}
                     outerVignette={false}
@@ -201,16 +251,38 @@ const page = () => {
               </div>
               
               {/* EvervaultCard section */}
-              <div className="w-full aspect-[4/3] bg-black relative overflow-hidden border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-center justify-center p-4">
-                <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-white z-20" />
-                <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-white z-20" />
-                <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-white z-20" />
-                <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-white z-20" />
-                <EvervaultCard text={project.name} className="w-full h-full" />
+              <div className={`w-full aspect-[4/3] relative overflow-hidden border flex flex-col items-center justify-center p-4 ${
+                isLight 
+                  ? 'bg-white border-zinc-300' 
+                  : 'bg-black border-black/[0.2]'
+              }`}>
+                <Icon className={`absolute h-6 w-6 -top-3 -left-3 z-20 ${
+                  isLight ? 'text-[#011623]' : 'text-white'
+                }`} />
+                <Icon className={`absolute h-6 w-6 -bottom-3 -left-3 z-20 ${
+                  isLight ? 'text-[#011623]' : 'text-white'
+                }`} />
+                <Icon className={`absolute h-6 w-6 -top-3 -right-3 z-20 ${
+                  isLight ? 'text-[#011623]' : 'text-white'
+                }`} />
+                <Icon className={`absolute h-6 w-6 -bottom-3 -right-3 z-20 ${
+                  isLight ? 'text-[#011623]' : 'text-white'
+                }`} />
+                <EvervaultCard 
+                  text={project.name} 
+                  className="w-full h-full"
+                  backgroundColor={isLight ? '#ffffff' : '#000000'}
+                  textColor={isLight ? '#000000' : '#ffffff'}
+                  isLight={isLight}
+                />
               </div>
               
               {/* Description section */}
-              <div className="p-4 border-t border-zinc-700 bg-black">
+              <div className={`p-4 border-t ${
+                isLight 
+                  ? 'bg-white border-zinc-300' 
+                  : 'bg-black border-zinc-700'
+              }`}>
                 <p className="text-sm text-zinc-400 font-light">{project.description}</p>
               </div>
               

@@ -12,7 +12,7 @@ const HeroLanding: React.FC = () => {
     // Background color: #0A0A0A with orange gradient on ends
     <section 
       className={`min-h-screen flex items-center justify-center p-8 relative overflow-hidden ${
-        isLight ? 'bg-[#FAFAFA] text-[#011623]' : 'bg-[#0A0A0A] text-gray-100'
+        isLight ? 'bg-white text-[#011623]' : 'bg-[#0A0A0A] text-gray-100'
       }`}
     >
       {/* Orange gradient on left end - more intense (only in dark theme) */}
@@ -41,13 +41,13 @@ const HeroLanding: React.FC = () => {
         }`}>
           Explore <span className={`px-2 ${
             isLight 
-              ? 'bg-[#03D9DC] text-white' 
+              ? 'bg-[#03D9DC] text-[#011623]' 
               : 'bg-[#CC4420] text-white'
           }`}>Fhenix*</span>.
           <br /> 
           Launch <span className={`px-2 ${
             isLight 
-              ? 'bg-[#03D9DC] text-white' 
+            ? 'bg-[#03D9DC] text-[#011623]' 
               : 'bg-[#CC4420] text-white'
           }`}>Faster</span>.
         </h1>
@@ -83,9 +83,13 @@ const HeroLanding: React.FC = () => {
           </Link>
         </div>
       </div>
-      {/* More intense background glow effects */}
-      <div className="absolute w-96 h-96 bg-[#CC4420]/30 rounded-full blur-3xl opacity-60 bottom-10 left-10 animate-pulse pointer-events-none"></div>
-      <div className="absolute w-96 h-96 bg-[#CC4420]/25 rounded-full blur-3xl opacity-50 top-10 right-10 animate-pulse pointer-events-none"></div>
+      {/* More intense background glow effects (only in dark theme) */}
+      {!isLight && (
+        <>
+          <div className="absolute w-96 h-96 bg-[#CC4420]/30 rounded-full blur-3xl opacity-60 bottom-10 left-10 animate-pulse pointer-events-none"></div>
+          <div className="absolute w-96 h-96 bg-[#CC4420]/25 rounded-full blur-3xl opacity-50 top-10 right-10 animate-pulse pointer-events-none"></div>
+        </>
+      )}
     </section>
   );
 };
