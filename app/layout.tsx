@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
+import ThemeToggle from "./components/ThemeToggle";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -34,10 +35,13 @@ export default function RootLayout({
               <Link href="/" className="text-2xl font-bold text-white">
                 (fhenix<span className="text-3xl font-bold text-[#FF7A4D]">*</span>)-starters
               </Link>
-              <div className="flex space-x-4">
+              <div className="absolute left-1/2 transform -translate-x-1/2">
                 <Link href="/explore" className="text-white hover:text-zinc-400 transition">
                   Explore
                 </Link>
+              </div>
+              <div className="flex items-center">
+                <ThemeToggle />
               </div>
             </div>
           </div>
