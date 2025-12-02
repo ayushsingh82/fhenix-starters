@@ -21,7 +21,7 @@ const HeroLanding: React.FC = () => {
         <h1 className="text-6xl md:text-8xl font-semibold font-serif text-white mb-6 leading-tight">
           Explore <span className="bg-[#CC4420] px-2">Fhenix*</span>.
           <br /> 
-          Live <span className="bg-[#CC4420] px-2">Dapps</span>.
+          Launch <span className="bg-[#CC4420] px-2">Faster</span>.
         </h1>
         
         <p className="text-lg md:text-xl text-zinc-400 max-w-3xl mx-auto mb-10">

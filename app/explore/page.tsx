@@ -2,14 +2,15 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import LetterGlitch from '@/app/components/LetterGlitch';
+import { EvervaultCard, Icon } from '@/components/ui/evervault-card';
 
 const page = () => {
   const projects = [
     {
       id: 1,
       name: 'Project  1',
+      description: 'Description for Project 1. This is a sample description text.',
       image: 'https://cdn.prod.website-files.com/6889e4acaa36a330a3b124f2/68aca7d70e920af4be0d4a0d_Untitled-22.webp',
       githubUrl: 'https://github.com',
       websiteUrl: 'https://example.com',
@@ -17,6 +18,7 @@ const page = () => {
     {
       id: 2,
       name: 'Project  2',
+      description: 'Description for Project 2. This is a sample description text.',
       image: 'https://www.nftgators.com/wp-content/uploads/2024/06/Fhenix.jpg',
       githubUrl: 'https://github.com',
       websiteUrl: 'https://example.com',
@@ -24,6 +26,7 @@ const page = () => {
     {
       id: 3,
       name: 'Project  3',
+      description: 'Description for Project 3. This is a sample description text.',
       image: 'https://cdn.prod.website-files.com/6889e4acaa36a330a3b124f2/6914c5793d1c014c69016d8a_Twitter%20post%20-%20404%20(1).png',
       githubUrl: 'https://github.com',
       websiteUrl: 'https://example.com',
@@ -43,7 +46,7 @@ const page = () => {
           {projects.slice(0, 2).map((project) => (
             <div
               key={project.id}
-              className="w-full md:w-[500px] border border-zinc-700 rounded-lg overflow-hidden bg-[#0A0A0A] relative"
+              className="w-full md:w-[500px] border border-zinc-700 rounded-lg overflow-hidden bg-black relative"
             >
               {/* Border decorations - corners */}
               <div className="absolute top-0 left-0 w-6 h-6 border-l-[3px] border-t-[2px] border-[#CC4420] z-10"></div>
@@ -52,7 +55,7 @@ const page = () => {
               <div className="absolute bottom-0 right-0 w-6 h-6 border-r-[3px] border-b-[2px] border-[#CC4420] z-10"></div>
               
               {/* Project name with LetterGlitch */}
-              <div className="relative h-20 border-b border-zinc-700 overflow-hidden group">
+              <div className="relative h-20 border-b border-zinc-700 overflow-hidden">
                 <div className="absolute inset-0">
                   <LetterGlitch
                     glitchColors={['#ffffff', '#f4f4f5', '#e4e4e7', '#d4d4d8', '#a1a1aa', '#71717a', '#CC4420']}
@@ -62,20 +65,20 @@ const page = () => {
                     smooth={true}
                   />
                 </div>
-                <div className="absolute inset-0 flex items-center justify-center p-4 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-                  <h3 className="text-xl font-semibold text-white">{project.name}</h3>
-                </div>
               </div>
               
-              {/* Image section */}
-              <div className="w-full aspect-[4/3] bg-zinc-900 relative overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt="Project"
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
+              {/* EvervaultCard section */}
+              <div className="w-full aspect-[4/3] bg-black relative overflow-hidden border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-center justify-center p-4">
+                <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-white z-20" />
+                <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-white z-20" />
+                <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-white z-20" />
+                <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-white z-20" />
+                <EvervaultCard text={project.name} className="w-full h-full" />
+              </div>
+              
+              {/* Description section */}
+              <div className="p-4 border-t border-zinc-700 bg-black">
+                <p className="text-sm text-zinc-400 font-light">{project.description}</p>
               </div>
               
               {/* GitHub and Website links */}
@@ -131,7 +134,7 @@ const page = () => {
           {projects.slice(2, 3).map((project) => (
             <div
               key={project.id}
-              className="w-full md:w-[500px] border border-zinc-700 rounded-lg overflow-hidden bg-[#0A0A0A] relative"
+              className="w-full md:w-[500px] border border-zinc-700 rounded-lg overflow-hidden bg-black relative"
             >
               {/* Border decorations - corners */}
               <div className="absolute top-0 left-0 w-6 h-6 border-l-[3px] border-t-[2px] border-[#CC4420] z-10"></div>
@@ -140,7 +143,7 @@ const page = () => {
               <div className="absolute bottom-0 right-0 w-6 h-6 border-r-[3px] border-b-[2px] border-[#CC4420] z-10"></div>
               
               {/* Project name with LetterGlitch */}
-              <div className="relative h-20 border-b border-zinc-700 overflow-hidden group">
+              <div className="relative h-20 border-b border-zinc-700 overflow-hidden">
                 <div className="absolute inset-0">
                   <LetterGlitch
                     glitchColors={['#ffffff', '#f4f4f5', '#e4e4e7', '#d4d4d8', '#a1a1aa', '#71717a', '#CC4420']}
@@ -150,20 +153,20 @@ const page = () => {
                     smooth={true}
                   />
                 </div>
-                <div className="absolute inset-0 flex items-center justify-center p-4 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-                  <h3 className="text-xl font-semibold text-white">{project.name}</h3>
-                </div>
               </div>
               
-              {/* Image section */}
-              <div className="w-full aspect-[4/3] bg-zinc-900 relative overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt="Project"
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
+              {/* EvervaultCard section */}
+              <div className="w-full aspect-[4/3] bg-black relative overflow-hidden border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-center justify-center p-4">
+                <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-white z-20" />
+                <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-white z-20" />
+                <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-white z-20" />
+                <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-white z-20" />
+                <EvervaultCard text={project.name} className="w-full h-full" />
+              </div>
+              
+              {/* Description section */}
+              <div className="p-4 border-t border-zinc-700 bg-black">
+                <p className="text-sm text-zinc-400 font-light">{project.description}</p>
               </div>
               
               {/* GitHub and Website links */}
