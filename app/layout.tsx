@@ -35,7 +35,7 @@ export default function RootLayout({
                 (fhenix*)-starters
               </Link>
               <div className="flex space-x-4">
-                <Link href="/" className="text-white hover:text-zinc-400 transition">
+                <Link href="/explore" className="text-white hover:text-zinc-400 transition">
                   Explore
                 </Link>
               </div>

@@ -1,21 +1,19 @@
-'use client';
-
 import { useRef, useEffect } from 'react';
 
 const LetterGlitch = ({
-  glitchColors = ['#ffffff', '#f4f4f5', '#e4e4e7', '#d4d4d8', '#a1a1aa', '#71717a'],
+  glitchColors = ['#2b4539', '#61dca3', '#61b3dc'],
   glitchSpeed = 50,
   centerVignette = false,
   outerVignette = true,
   smooth = true,
-  characters = '(FHENIX*)(FHENIX*)-STARTERS!@#$&*()-_+=/[]{};:<>.,0123456789'
+  characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$&*()-_+=/[]{};:<>.,0123456789'
 }: {
-  glitchColors?: string[];
-  glitchSpeed?: number;
-  centerVignette?: boolean;
-  outerVignette?: boolean;
-  smooth?: boolean;
-  characters?: string;
+  glitchColors: string[];
+  glitchSpeed: number;
+  centerVignette: boolean;
+  outerVignette: boolean;
+  smooth: boolean;
+  characters: string;
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animationRef = useRef<number | null>(null);
@@ -30,7 +28,9 @@ const LetterGlitch = ({
   const grid = useRef({ columns: 0, rows: 0 });
   const context = useRef<CanvasRenderingContext2D | null>(null);
   const lastGlitchTime = useRef(Date.now());
+
   const lettersAndSymbols = Array.from(characters);
+
   const fontSize = 16;
   const charWidth = 10;
   const charHeight = 20;
@@ -48,6 +48,7 @@ const LetterGlitch = ({
     hex = hex.replace(shorthandRegex, (_m, r, g, b) => {
       return r + r + g + g + b + b;
     });
+
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result
       ? {
@@ -91,7 +92,6 @@ const LetterGlitch = ({
   const resizeCanvas = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const parent = canvas.parentElement;
     if (!parent) return;
 
@@ -100,6 +100,7 @@ const LetterGlitch = ({
 
     canvas.width = rect.width * dpr;
     canvas.height = rect.height * dpr;
+
     canvas.style.width = `${rect.width}px`;
     canvas.style.height = `${rect.height}px`;
 
@@ -114,10 +115,8 @@ const LetterGlitch = ({
 
   const drawLetters = () => {
     if (!context.current || letters.current.length === 0) return;
-
     const ctx = context.current;
     const { width, height } = canvasRef.current!.getBoundingClientRect();
-
     ctx.clearRect(0, 0, width, height);
     ctx.font = `${fontSize}px monospace`;
     ctx.textBaseline = 'top';
@@ -153,7 +152,6 @@ const LetterGlitch = ({
 
   const handleSmoothTransitions = () => {
     let needsRedraw = false;
-
     letters.current.forEach(letter => {
       if (letter.colorProgress < 1) {
         letter.colorProgress += 0.05;
@@ -161,7 +159,6 @@ const LetterGlitch = ({
 
         const startRgb = hexToRgb(letter.color);
         const endRgb = hexToRgb(letter.targetColor);
-
         if (startRgb && endRgb) {
           letter.color = interpolateColor(startRgb, endRgb, letter.colorProgress);
           needsRedraw = true;
@@ -231,4 +228,3 @@ const LetterGlitch = ({
 };
 
 export default LetterGlitch;
-
