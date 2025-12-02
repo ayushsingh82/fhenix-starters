@@ -1,32 +1,20 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const ThemeToggle = () => {
-  const [isDark, setIsDark] = useState(true);
-
-  useEffect(() => {
-    // Check if there's a saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setIsDark(savedTheme === 'dark');
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = !isDark;
-    setIsDark(newTheme);
-    localStorage.setItem('theme', newTheme ? 'dark' : 'light');
-    // Theme switching logic will be added later when light theme colors are provided
-  };
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <button
       onClick={toggleTheme}
-      className="text-white hover:text-zinc-400 transition p-2"
+      className={`hover:text-zinc-400 transition p-2 ${
+        theme === 'light' ? 'text-[#011623]' : 'text-white'
+      }`}
       aria-label="Toggle theme"
     >
-      {isDark ? (
+      {theme === 'dark' ? (
         // Moon icon (dark mode)
         <svg
           className="w-5 h-5"

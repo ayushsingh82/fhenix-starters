@@ -4,8 +4,11 @@ import React from 'react';
 import Link from 'next/link';
 import LetterGlitch from '@/app/components/LetterGlitch';
 import { EvervaultCard, Icon } from '@/components/ui/evervault-card';
+import { useTheme } from '../contexts/ThemeContext';
 
 const page = () => {
+  const { theme } = useTheme();
+  const isLight = theme === 'light';
   const projects = [
     {
       id: 1,
@@ -34,11 +37,17 @@ const page = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white py-16 px-8 relative overflow-hidden">
-      {/* Orange gradient on left end - more intense */}
-      <div className="absolute left-0 top-0 w-[77px] md:w-[307px] h-full bg-gradient-to-r from-[#CC4420]/50 to-transparent pointer-events-none z-0"></div>
-      {/* Orange gradient on right end - more intense */}
-      <div className="absolute right-0 top-0 w-[77px] md:w-[307px] h-full bg-gradient-to-l from-[#CC4420]/50 to-transparent pointer-events-none z-0"></div>
+    <div className={`min-h-screen py-16 px-8 relative overflow-hidden ${
+      isLight ? 'bg-[#FAFAFA] text-[#011623]' : 'bg-[#0A0A0A] text-white'
+    }`}>
+      {/* Orange gradient on left end - more intense (only in dark theme) */}
+      {!isLight && (
+        <div className="absolute left-0 top-0 w-[77px] md:w-[307px] h-full bg-gradient-to-r from-[#CC4420]/50 to-transparent pointer-events-none z-0"></div>
+      )}
+      {/* Orange gradient on right end - more intense (only in dark theme) */}
+      {!isLight && (
+        <div className="absolute right-0 top-0 w-[77px] md:w-[307px] h-full bg-gradient-to-l from-[#CC4420]/50 to-transparent pointer-events-none z-0"></div>
+      )}
       
       <div className="max-w-7xl mx-auto relative z-10 px-4 md:px-8">
         {/* First row with 2 boxes */}
@@ -46,16 +55,30 @@ const page = () => {
           {projects.slice(0, 2).map((project) => (
             <div
               key={project.id}
-              className="w-full md:w-[500px] border border-zinc-700 rounded-lg overflow-hidden bg-black relative"
+              className={`w-full md:w-[500px] border rounded-lg overflow-hidden relative ${
+                isLight 
+                  ? 'border-[#03D9DC] bg-white' 
+                  : 'border-zinc-700 bg-black'
+              }`}
             >
               {/* Border decorations - corners */}
-              <div className="absolute top-0 left-0 w-6 h-6 border-l-[3px] border-t-[2px] border-[#CC4420] z-10"></div>
-              <div className="absolute top-0 right-0 w-6 h-6 border-r-[3px] border-t-[2px] border-[#CC4420] z-10"></div>
-              <div className="absolute bottom-0 left-0 w-6 h-6 border-l-[3px] border-b-[2px] border-[#CC4420] z-10"></div>
-              <div className="absolute bottom-0 right-0 w-6 h-6 border-r-[3px] border-b-[2px] border-[#CC4420] z-10"></div>
+              <div className={`absolute top-0 left-0 w-6 h-6 border-l-[3px] border-t-[2px] z-10 ${
+                isLight ? 'border-[#03D9DC]' : 'border-[#CC4420]'
+              }`}></div>
+              <div className={`absolute top-0 right-0 w-6 h-6 border-r-[3px] border-t-[2px] z-10 ${
+                isLight ? 'border-[#03D9DC]' : 'border-[#CC4420]'
+              }`}></div>
+              <div className={`absolute bottom-0 left-0 w-6 h-6 border-l-[3px] border-b-[2px] z-10 ${
+                isLight ? 'border-[#03D9DC]' : 'border-[#CC4420]'
+              }`}></div>
+              <div className={`absolute bottom-0 right-0 w-6 h-6 border-r-[3px] border-b-[2px] z-10 ${
+                isLight ? 'border-[#03D9DC]' : 'border-[#CC4420]'
+              }`}></div>
               
               {/* Project name with LetterGlitch */}
-              <div className="relative h-[60px] border-b border-zinc-700 overflow-hidden">
+              <div className={`relative h-[60px] border-b overflow-hidden ${
+                isLight ? 'border-zinc-300' : 'border-zinc-700'
+              }`}>
                 <div className="absolute inset-0">
                   <LetterGlitch
                     glitchColors={['#ffffff', '#f4f4f5', '#e4e4e7', '#d4d4d8', '#a1a1aa', '#71717a', '#CC4420']}
@@ -87,7 +110,11 @@ const page = () => {
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 border border-[#CC4420] rounded px-4 py-2 text-white text-sm font-medium hover:bg-[#CC4420]/10 transition flex items-center justify-center gap-2"
+                  className={`flex-1 border rounded px-4 py-2 text-sm font-medium transition flex items-center justify-center gap-2 ${
+                    isLight
+                      ? 'border-[#03D9DC] text-[#011623] hover:bg-[#03D9DC]/10'
+                      : 'border-[#CC4420] text-white hover:bg-[#CC4420]/10'
+                  }`}
                 >
                   <svg
                     className="w-5 h-5"
@@ -107,7 +134,11 @@ const page = () => {
                   href={project.websiteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 border border-[#CC4420] rounded px-4 py-2 text-white text-sm font-medium hover:bg-[#CC4420]/10 transition flex items-center justify-center gap-2"
+                  className={`flex-1 border rounded px-4 py-2 text-sm font-medium transition flex items-center justify-center gap-2 ${
+                    isLight
+                      ? 'border-[#03D9DC] text-[#011623] hover:bg-[#03D9DC]/10'
+                      : 'border-[#CC4420] text-white hover:bg-[#CC4420]/10'
+                  }`}
                 >
                   <svg
                     className="w-5 h-5"
@@ -134,16 +165,30 @@ const page = () => {
           {projects.slice(2, 3).map((project) => (
             <div
               key={project.id}
-              className="w-full md:w-[500px] border border-zinc-700 rounded-lg overflow-hidden bg-black relative"
+              className={`w-full md:w-[500px] border rounded-lg overflow-hidden relative ${
+                isLight 
+                  ? 'border-[#03D9DC] bg-white' 
+                  : 'border-zinc-700 bg-black'
+              }`}
             >
               {/* Border decorations - corners */}
-              <div className="absolute top-0 left-0 w-6 h-6 border-l-[3px] border-t-[2px] border-[#CC4420] z-10"></div>
-              <div className="absolute top-0 right-0 w-6 h-6 border-r-[3px] border-t-[2px] border-[#CC4420] z-10"></div>
-              <div className="absolute bottom-0 left-0 w-6 h-6 border-l-[3px] border-b-[2px] border-[#CC4420] z-10"></div>
-              <div className="absolute bottom-0 right-0 w-6 h-6 border-r-[3px] border-b-[2px] border-[#CC4420] z-10"></div>
+              <div className={`absolute top-0 left-0 w-6 h-6 border-l-[3px] border-t-[2px] z-10 ${
+                isLight ? 'border-[#03D9DC]' : 'border-[#CC4420]'
+              }`}></div>
+              <div className={`absolute top-0 right-0 w-6 h-6 border-r-[3px] border-t-[2px] z-10 ${
+                isLight ? 'border-[#03D9DC]' : 'border-[#CC4420]'
+              }`}></div>
+              <div className={`absolute bottom-0 left-0 w-6 h-6 border-l-[3px] border-b-[2px] z-10 ${
+                isLight ? 'border-[#03D9DC]' : 'border-[#CC4420]'
+              }`}></div>
+              <div className={`absolute bottom-0 right-0 w-6 h-6 border-r-[3px] border-b-[2px] z-10 ${
+                isLight ? 'border-[#03D9DC]' : 'border-[#CC4420]'
+              }`}></div>
               
               {/* Project name with LetterGlitch */}
-              <div className="relative h-[60px] border-b border-zinc-700 overflow-hidden">
+              <div className={`relative h-[60px] border-b overflow-hidden ${
+                isLight ? 'border-zinc-300' : 'border-zinc-700'
+              }`}>
                 <div className="absolute inset-0">
                   <LetterGlitch
                     glitchColors={['#ffffff', '#f4f4f5', '#e4e4e7', '#d4d4d8', '#a1a1aa', '#71717a', '#CC4420']}
@@ -175,7 +220,11 @@ const page = () => {
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 border border-[#CC4420] rounded px-4 py-2 text-white text-sm font-medium hover:bg-[#CC4420]/10 transition flex items-center justify-center gap-2"
+                  className={`flex-1 border rounded px-4 py-2 text-sm font-medium transition flex items-center justify-center gap-2 ${
+                    isLight
+                      ? 'border-[#03D9DC] text-[#011623] hover:bg-[#03D9DC]/10'
+                      : 'border-[#CC4420] text-white hover:bg-[#CC4420]/10'
+                  }`}
                 >
                   <svg
                     className="w-5 h-5"
@@ -195,7 +244,11 @@ const page = () => {
                   href={project.websiteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 border border-[#CC4420] rounded px-4 py-2 text-white text-sm font-medium hover:bg-[#CC4420]/10 transition flex items-center justify-center gap-2"
+                  className={`flex-1 border rounded px-4 py-2 text-sm font-medium transition flex items-center justify-center gap-2 ${
+                    isLight
+                      ? 'border-[#03D9DC] text-[#011623] hover:bg-[#03D9DC]/10'
+                      : 'border-[#CC4420] text-white hover:bg-[#CC4420]/10'
+                  }`}
                 >
                   <svg
                     className="w-5 h-5"
