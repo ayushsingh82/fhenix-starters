@@ -130,36 +130,63 @@ const customStyles = `
     border-top: none;
   }
 
-  /* Swap button with enhanced styling */
+  /* Swap button with enhanced styling - single border with design */
   .swap-button-style {
-    clip-path: polygon(3% 0, 97% 0, 100% 8%, 100% 92%, 97% 100%, 3% 100%, 0 92%, 0 8%);
+    clip-path: polygon(
+      2% 0, 98% 0, 100% 2%, 100% 98%, 98% 100%, 2% 100%, 0 98%, 0 2%
+    );
     border: 2px solid ${COLORS.ORANGE_PRIMARY};
-    background: linear-gradient(135deg, ${COLORS.BUTTON_BG} 0%, #944232 100%);
+    background: linear-gradient(135deg, ${COLORS.BOX_BG} 0%, #120805 100%);
     position: relative;
     z-index: 10;
     box-shadow: 
-      0 0 20px rgba(204, 68, 32, 0.4),
+      0 0 20px rgba(204, 68, 32, 0.3),
       0 0 40px rgba(255, 102, 0, 0.2),
-      inset 0 0 20px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
+      inset 0 0 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: pulse-glow-orange 3s ease-in-out infinite;
     text-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
   }
   .swap-button-style:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 
-      0 0 30px rgba(255, 107, 61, 0.8),
-      0 0 60px rgba(255, 102, 0, 0.4),
-      inset 0 0 20px rgba(0, 0, 0, 0.3);
     border-color: ${COLORS.GLOW_ORANGE};
+    box-shadow: 
+      0 0 30px rgba(255, 107, 61, 0.6),
+      0 0 60px rgba(255, 102, 0, 0.3),
+      inset 0 0 30px rgba(0, 0, 0, 0.5);
+    transform: translateY(-4px);
   }
-  .swap-button-style::before {
-    content: '';
+  /* Corner accent decorations for border design */
+  .swap-button-corner {
     position: absolute;
-    inset: 4px;
-    border: 1px solid ${COLORS.ORANGE_ACCENT};
+    width: 12px;
+    height: 12px;
+    border: 3px solid ${COLORS.ORANGE_ACCENT};
     pointer-events: none;
     z-index: 1;
-    opacity: 0.5;
+  }
+  .swap-button-corner.top-left {
+    top: -3px;
+    left: -3px;
+    border-right: none;
+    border-bottom: none;
+  }
+  .swap-button-corner.top-right {
+    top: -3px;
+    right: -3px;
+    border-left: none;
+    border-bottom: none;
+  }
+  .swap-button-corner.bottom-left {
+    bottom: -3px;
+    left: -3px;
+    border-right: none;
+    border-top: none;
+  }
+  .swap-button-corner.bottom-right {
+    bottom: -3px;
+    right: -3px;
+    border-left: none;
+    border-top: none;
   }
   
   /* Input field enhancements */
@@ -190,12 +217,43 @@ const customStyles = `
       0 0 15px rgba(204, 68, 32, 0.3),
       0 0 30px rgba(255, 102, 0, 0.2);
     transition: all 0.3s ease;
+    min-height: auto;
   }
   .external-input-box:hover {
     border-color: ${COLORS.GLOW_ORANGE};
     box-shadow: 
       0 0 25px rgba(255, 107, 61, 0.5),
       0 0 50px rgba(255, 102, 0, 0.3);
+  }
+  
+  /* Dropdown styling */
+  .token-dropdown {
+    background: transparent;
+    border: 1px solid ${COLORS.ORANGE_PRIMARY};
+    color: ${COLORS.ORANGE_ACCENT};
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 8px rgba(255, 127, 80, 0.5);
+  }
+  
+  .token-dropdown:hover {
+    border-color: ${COLORS.GLOW_ORANGE};
+    box-shadow: 0 0 15px rgba(255, 107, 61, 0.4);
+  }
+  
+  .token-dropdown:focus {
+    border-color: ${COLORS.GLOW_ORANGE};
+    box-shadow: 0 0 20px rgba(255, 107, 61, 0.6);
+  }
+  
+  .token-dropdown option {
+    background: ${COLORS.BOX_BG};
+    color: ${COLORS.ORANGE_ACCENT};
   }
   
   /* Dot effect animation */
@@ -209,31 +267,47 @@ const customStyles = `
   }
   
   .dot-effect {
+    position: relative;
+    width: 40px;
+    height: 40px;
     display: flex;
-    gap: 4px;
     align-items: center;
     justify-content: center;
   }
   
   .dot-effect span {
-    width: 6px;
-    height: 6px;
+    position: absolute;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: ${COLORS.ORANGE_ACCENT};
     animation: dot-pulse 1.5s ease-in-out infinite;
     box-shadow: 0 0 8px rgba(255, 127, 80, 0.6);
   }
   
+  /* Position dots in a circle */
   .dot-effect span:nth-child(1) {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     animation-delay: 0s;
   }
   .dot-effect span:nth-child(2) {
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
     animation-delay: 0.2s;
   }
   .dot-effect span:nth-child(3) {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     animation-delay: 0.4s;
   }
   .dot-effect span:nth-child(4) {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
     animation-delay: 0.6s;
   }
   
@@ -277,7 +351,7 @@ const customStyles = `
 // Interface for state
 interface TokenState {
   amount: string;
-  symbol: 'USDC';
+  symbol: 'USDC' | 'USDT';
   chain: 'Base' | 'Arbitrum';
 }
 
@@ -285,10 +359,24 @@ const EnhancedIndustrialSwapBox: React.FC = () => {
   const [fromToken, setFromToken] = useState<TokenState>({ amount: '1000.00', symbol: 'USDC', chain: 'Base' });
   const [toToken, setToToken] = useState<TokenState>({ amount: '1000.00', symbol: 'USDC', chain: 'Arbitrum' });
 
-  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setFromToken(prev => ({ ...prev, amount: value }));
-    setToToken(prev => ({ ...prev, amount: value }));
+  const handleAmountChange = (tokenType: 'from' | 'to', value: string) => {
+    // Remove token symbols if user pasted them, and extract just the number
+    value = value.replace(/USDC|USDT/gi, '').trim();
+    // Only allow numbers and decimal point
+    value = value.replace(/[^\d.]/g, '');
+    if (tokenType === 'from') {
+      setFromToken(prev => ({ ...prev, amount: value }));
+    } else {
+      setToToken(prev => ({ ...prev, amount: value }));
+    }
+  };
+
+  const handleTokenChange = (tokenType: 'from' | 'to', symbol: 'USDC' | 'USDT') => {
+    if (tokenType === 'from') {
+      setFromToken(prev => ({ ...prev, symbol }));
+    } else {
+      setToToken(prev => ({ ...prev, symbol }));
+    }
   };
 
   const handleSwap = () => { 
@@ -397,16 +485,42 @@ const EnhancedIndustrialSwapBox: React.FC = () => {
       <div className="min-h-screen flex flex-col items-center justify-center p-4" style={{ backgroundColor: COLORS.BACKGROUND }}>
         
         {/* Main Swap Container */}
-        <div className="w-full max-w-5xl px-4 py-8 relative">
+        <div className="w-full max-w-5xl px-4 pt-4 pb-8 relative">
           
           {/* Horizontal Alignment of Swap Boxes and Arrow */}
-          <div className="flex items-center justify-center gap-12 mb-8 relative">
+          <div className="flex items-start justify-center gap-12 mb-4 relative">
             
             {/* From Token Box (USDC on Base) */}
-            <TokenAndChainBox token={fromToken} isInput={false} />
+            <div className="flex flex-col items-center">
+              <TokenAndChainBox token={fromToken} isInput={false} />
+              
+              {/* Input Box Below From Token */}
+              <div className="external-input-box px-3 py-2 w-[360px] mt-2">
+                <div className="flex items-center justify-center gap-3">
+                  <input
+                    type="text"
+                    value={fromToken.amount}
+                    onChange={(e) => handleAmountChange('from', e.target.value)}
+                    placeholder="0"
+                    className="amount-input text-center flex-1"
+                    style={{ fontSize: '1.4rem', lineHeight: '1', height: 'auto' }}
+                  />
+                  <span 
+                    className="text-lg font-bold whitespace-nowrap"
+                    style={{ 
+                      color: COLORS.ORANGE_ACCENT,
+                      textShadow: '0 0 10px rgba(255, 127, 80, 0.6)',
+                      fontSize: '1.1rem'
+                    }}
+                  >
+                    USDC
+                  </span>
+                </div>
+              </div>
+            </div>
             
             {/* Horizontal Swap Arrow Button */}
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center mt-32">
               <div 
                 className="p-4 rounded-full border-2 cursor-pointer transition-all duration-300 hover:scale-110"
                 style={{ 
@@ -434,31 +548,47 @@ const EnhancedIndustrialSwapBox: React.FC = () => {
             </div>
             
             {/* To Token Box (USDC on Arbitrum) */}
-            <TokenAndChainBox token={toToken} isInput={false} />
-            
-          </div>
-          
-          {/* External Input Box - Below and to the right */}
-          <div className="flex justify-end items-start gap-4 relative mt-4">
-            <div className="external-input-box p-6 w-72">
-              <input
-                type="text"
-                value={fromToken.amount}
-                onChange={handleAmountChange}
-                placeholder="0.00"
-                className="amount-input w-full text-center"
-                style={{ fontSize: '2.5rem' }}
-              />
+            <div className="flex flex-col items-center">
+              <TokenAndChainBox token={toToken} isInput={false} />
+              
+              {/* Input Box Below To Token */}
+              <div className="external-input-box px-3 py-2 w-[360px] mt-2">
+                <div className="flex items-center justify-center gap-3">
+                  <input
+                    type="text"
+                    value={toToken.amount}
+                    onChange={(e) => handleAmountChange('to', e.target.value)}
+                    placeholder="0"
+                    className="amount-input text-center flex-1"
+                    style={{ fontSize: '1.4rem', lineHeight: '1', height: 'auto' }}
+                  />
+                  <span 
+                    className="text-lg font-bold whitespace-nowrap"
+                    style={{ 
+                      color: COLORS.ORANGE_ACCENT,
+                      textShadow: '0 0 10px rgba(255, 127, 80, 0.6)',
+                      fontSize: '1.1rem'
+                    }}
+                  >
+                    USDC
+                  </span>
+                </div>
+              </div>
             </div>
+            
           </div>
           
           {/* Swap Button - Smaller width */}
           <div className="flex justify-center mt-8">
             <button
               onClick={handleSwap}
-              className="swap-button-style py-5 px-12 text-xl font-bold text-white text-center"
+              className="swap-button-style py-3 px-6 text-xl font-bold text-white text-center relative"
               style={{ minWidth: '250px', maxWidth: '280px' }}
             >
+              <div className="swap-button-corner top-left" />
+              <div className="swap-button-corner top-right" />
+              <div className="swap-button-corner bottom-left" />
+              <div className="swap-button-corner bottom-right" />
               Execute Swap
             </button>
           </div>
