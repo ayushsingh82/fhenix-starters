@@ -38,18 +38,18 @@ const page = () => {
   const projects = [
     {
       id: 1,
-      name: 'Project  1',
-      description: 'Description for Project 1. This is a sample description text.',
+      name: 'Confidential Transfer',
+      description: 'A privacy-preserving transfer application built on Fhenix, enabling confidential transactions with encrypted data processing.',
       image: 'https://cdn.prod.website-files.com/6889e4acaa36a330a3b124f2/68aca7d70e920af4be0d4a0d_Untitled-22.webp',
-      githubUrl: 'https://github.com',
+      githubUrl: 'https://github.com/ayushsingh82/Confidential-Transfer',
       websiteUrl: 'https://example.com',
     },
     {
       id: 2,
-      name: 'Project  2',
-      description: 'Description for Project 2. This is a sample description text.',
+      name: 'BigNumber game',
+      description: 'A confidential number guessing game leveraging Fhenix\'s encrypted computation capabilities for secure gameplay.',
       image: 'https://www.nftgators.com/wp-content/uploads/2024/06/Fhenix.jpg',
-      githubUrl: 'https://github.com',
+      githubUrl: 'https://github.com/ayushsingh82/Confidential-BigNumber-Game',
       websiteUrl: 'https://example.com',
     },
     {
@@ -212,14 +212,18 @@ const page = () => {
         {/* Second row with 1 box (centered) */}
         <div className="flex justify-center">
           {projects.slice(2, 3).map((project) => (
-            <div
-              key={project.id}
-              className={`w-full md:w-[500px] border rounded-lg overflow-hidden relative ${
-                isLight 
-                  ? 'border-[#03D9DC] bg-white' 
-                  : 'border-zinc-700 bg-black'
-              }`}
-            >
+            <div key={project.id} className="flex flex-col items-center">
+              {/* Coming Soon Tag */}
+              <div className="mb-2">
+              
+              </div>
+              <div
+                className={`w-full md:w-[500px] border rounded-lg overflow-hidden relative ${
+                  isLight 
+                    ? 'border-[#03D9DC] bg-white' 
+                    : 'border-zinc-700 bg-black'
+                }`}
+              >
               {/* Border decorations - corners */}
               <div className={`absolute top-0 left-0 w-6 h-6 border-l-[3px] border-t-[2px] z-10 ${
                 isLight ? 'border-[#03D9DC]' : 'border-[#CC4420]'
@@ -337,6 +341,7 @@ const page = () => {
                   </svg>
                   Website
                 </Link>
+              </div>
               </div>
             </div>
           ))}
